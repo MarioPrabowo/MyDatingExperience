@@ -8,6 +8,8 @@ namespace MyDatingExperience.Repository
 		public static readonly string DbName = "DateInMemoryDB";
 
 		public virtual DbSet<HotelBookingEntity> HotelBooking { get; set; }
+		public virtual DbSet<RestaurantReservationEntity> RestaurantReservation { get; set; }
+		public virtual DbSet<InvoiceEntity> Invoice { get; set; }
 
 		public DateDbContext(DbContextOptions<DateDbContext> options)
 			: base(options)
@@ -19,6 +21,16 @@ namespace MyDatingExperience.Repository
 			modelBuilder.Entity<HotelBookingEntity>(entity =>
 			{
 				entity.HasKey(e => e.BookingId);
+			});
+
+			modelBuilder.Entity<RestaurantReservationEntity>(entity =>
+			{
+				entity.HasKey(e => e.BookingId);
+			});
+
+			modelBuilder.Entity<InvoiceEntity>(entity =>
+			{
+				entity.HasKey(e => e.InvoiceId);
 			});
 
 			ConvertDateFieldsToUtc(modelBuilder);
